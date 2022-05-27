@@ -264,6 +264,7 @@ const Table = () => {
             
             <button className="save">Save</button>
           </div>
+          {/* multiples */}
           {rows.map((val,i)=>{
             return (
               <div className="rows">
