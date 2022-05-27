@@ -22,17 +22,12 @@ const MenuProps = {
   },
 };
 
+
+
+
 const names = [
   " ME Torque (Avg)",
-  "ME Speed (Avg)",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
+  "ME Speed (Avg)"
 ];
 
 function getStyles(name, personName, theme) {
@@ -47,6 +42,14 @@ function getStyles(name, personName, theme) {
 const Table = () => {
   const theme = useTheme();
   const [personName, setPersonName] = useState([]);
+  const [sperson,setSperson]=useState([]);
+  const [personAvg,setPersonAvg]=useState([]);
+
+  const [rows,setRows]=useState([{
+  valueinTorque:  " ME Torque (Avg)",
+   valueinSpeed: "ME Speed (Avg)"
+  }])
+
 
   const handleChange = (event) => {
     const {
@@ -57,6 +60,29 @@ const Table = () => {
       typeof value === "string" ? value.split(",") : value
     );
   };
+
+  const handleTChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonAvg(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+
+
+  const handleSecChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSperson(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
 
   return (
     <div className="layout">
@@ -80,12 +106,11 @@ const Table = () => {
         <div className="header">
           {" "}
           <button className="sto">
-              
             <img src={plus} width={20} height={20} alt="" />
           </button>
           <h3>Alert Name</h3>
-          <h3>Independent variable</h3> <h3>Dependent variable</h3> <h3>Frequency</h3>{" "}
-          <h3>Save</h3>
+          <h3>Independent variable</h3> <h3>Dependent variable</h3>{" "}
+          <h3>Frequency</h3> <h3>Save</h3>
         </div>
         <hr />
         <div className="acc">
@@ -103,8 +128,12 @@ const Table = () => {
               </svg>
             </button>
 
-            <TextField id="demo-helper-text-aligned-no-helper" className='mto' label="alert" />
-            <FormControl sx={{  width: 300 }} className='pl mto'>
+            <TextField
+              id="demo-helper-text-aligned-no-helper"
+              className="mto"
+              label="alert"
+            />
+            <FormControl sx={{ width: 300 }} className="pl mto">
               <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
               <Select
                 labelId="demo-multiple-chip-label"
@@ -133,32 +162,31 @@ const Table = () => {
                 ))}
               </Select>
             </FormControl>
-            <FormControl sx={{  minWidth: 230 }} className='mto eod'>
+            <FormControl sx={{ minWidth: 230 }} className="mto eod">
               <InputLabel id="demo-simple-select-autowidth-label">
-              ME Speed (Avg)
+                ME Speed (Avg)
               </InputLabel>
               <Select
                 labelId="demo-simple-select-autowidth-label"
                 id="demo-simple-select-autowidth"
                 onChange={handleChange}
                 autoWidth
-                label="Age"
+                label="ME Speed Avg"
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Twenty</MenuItem>
+                <MenuItem value={10}>ME Speed Avg</MenuItem>
                 <MenuItem value={21}>Twenty one</MenuItem>
                 <MenuItem value={22}>Twenty one and a half</MenuItem>
               </Select>
             </FormControl>
             <TextField
               id="demo-helper-text-aligned-no-helper"
-              
               label="min"
-              className='freq mto'
+              className="freq mto"
             />
-           
+
             <button className="save">Save</button>
           </div>
           <div className="rows">
@@ -174,15 +202,19 @@ const Table = () => {
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
               </svg>
             </button>
-            <TextField id="demo-helper-text-aligned-no-helper" className="mto" label="alert" />
-            <FormControl sx={{  width: 300 }} className='mto'>
+            <TextField
+              id="demo-helper-text-aligned-no-helper"
+              className="mto"
+              label="alert"
+            />
+            <FormControl sx={{ width: 300 }} className="mto">
               <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
                 multiple
-                value={personName}
-                onChange={handleChange}
+                value={sperson}
+                onChange={handleSecChange}
                 input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                 renderValue={(selected) => (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -197,14 +229,14 @@ const Table = () => {
                   <MenuItem
                     key={name}
                     value={name}
-                    style={getStyles(name, personName, theme)}
+                    style={getStyles(name, sperson, theme)}
                   >
                     {name}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
-            <FormControl sx={{  minWidth: 230 }} className='mto'>
+            <FormControl sx={{ minWidth: 230 }} className="mto">
               <InputLabel id="demo-simple-select-autowidth-label">
                 ME Shaft Power (Avg.)
               </InputLabel>
@@ -213,12 +245,12 @@ const Table = () => {
                 id="demo-simple-select-autowidth"
                 onChange={handleChange}
                 autoWidth
-                label="Age"
+                label="ME Speed Avg"
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Twenty</MenuItem>
+                <MenuItem value='ME Speed Avg'>ME Speed Avg</MenuItem>
                 <MenuItem value={21}>Twenty one</MenuItem>
                 <MenuItem value={22}>Twenty one and a half</MenuItem>
               </Select>
@@ -229,12 +261,12 @@ const Table = () => {
               label="min"
               className="freq mto"
             />
-            {/* <input type="text" value="ME Torque(Avg) ME Speed(Avg)" /> */}
-            {/* <input type="text" value="ME Speed(Avg)" /> */}
-            {/* <input type="text" value={10} /> */}
+            
             <button className="save">Save</button>
           </div>
-          <div className="rows">
+          {rows.map((val,i)=>{
+            return (
+              <div className="rows">
             <button className="soto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -247,17 +279,20 @@ const Table = () => {
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
               </svg>
             </button>
-            
-            <TextField id="demo-helper-text-aligned-no-helper" className="mto" label="alert" />
-            {/* <input type="text" value="alert 1" /> */}
-            <FormControl sx={{  width: 300 }} className='mto'>
-              <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
+
+            <TextField
+              id="demo-helper-text-aligned-no-helper"
+              className="mto"
+              label="alert"
+            />
+            <FormControl sx={{ width: 300 }} className="mto">
+              <InputLabel id="demo-multiple-chip-label">Select var..</InputLabel>
               <Select
                 labelId="demo-multiple-chip-label"
                 id="demo-multiple-chip"
                 multiple
-                value={personName}
-                onChange={handleChange}
+                value={personAvg}
+                onChange={handleTChange}
                 input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
                 renderValue={(selected) => (
                   <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
@@ -272,7 +307,7 @@ const Table = () => {
                   <MenuItem
                     key={name}
                     value={name}
-                    style={getStyles(name, personName, theme)}
+                    style={getStyles(name, personAvg, theme)}
                   >
                     {name}
                   </MenuItem>
@@ -280,7 +315,7 @@ const Table = () => {
               </Select>
             </FormControl>
 
-            <FormControl sx={{  minWidth: 230 }} className='mto'>
+            <FormControl sx={{ minWidth: 230 }} className="mto">
               <InputLabel id="demo-simple-select-autowidth-label">
                 Age
               </InputLabel>
@@ -289,22 +324,101 @@ const Table = () => {
                 id="demo-simple-select-autowidth"
                 onChange={handleChange}
                 autoWidth
-                label="Age"
+                label="ME Speed Avg"
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Twenty</MenuItem>
+                <MenuItem value='ME Speed Avg'>ME Speed Avg</MenuItem>
                 <MenuItem value={21}>Twenty one</MenuItem>
                 <MenuItem value={22}>Twenty one and a half</MenuItem>
               </Select>
             </FormControl>
-           
+
             <TextField
               id="demo-helper-text-aligned-no-helper"
               sx={{ w: 1 }}
               label="min"
-              className='freq mto'
+              className="freq mto"
+            />
+            <button className="save">Save</button>
+          </div>
+            )
+          })}
+          <div className="rows">
+            <button className="soto">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.5rem"
+                height="1.5rem"
+                fill="currentColor"
+                class="catIcon"
+                viewBox="0 0 16 16"
+              >
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+              </svg>
+            </button>
+
+            <TextField
+              id="demo-helper-text-aligned-no-helper"
+              className="mto"
+              label="alert"
+            />
+            <FormControl sx={{ width: 300 }} className="mto">
+              <InputLabel id="demo-multiple-chip-label">Select var..</InputLabel>
+              <Select
+                labelId="demo-multiple-chip-label"
+                id="demo-multiple-chip"
+                multiple
+                value={personAvg}
+                onChange={handleTChange}
+                input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                renderValue={(selected) => (
+                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+                MenuProps={MenuProps}
+              >
+                {names.map((name) => (
+                  <MenuItem
+                    key={name}
+                    value={name}
+                    style={getStyles(name, personAvg, theme)}
+                  >
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControl sx={{ minWidth: 230 }} className="mto">
+              <InputLabel id="demo-simple-select-autowidth-label">
+                Age
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-autowidth-label"
+                id="demo-simple-select-autowidth"
+                onChange={handleChange}
+                autoWidth
+                label="ME Speed Avg"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value='ME Speed Avg'>ME Speed Avg</MenuItem>
+                <MenuItem value={21}>Twenty one</MenuItem>
+                <MenuItem value={22}>Twenty one and a half</MenuItem>
+              </Select>
+            </FormControl>
+
+            <TextField
+              id="demo-helper-text-aligned-no-helper"
+              sx={{ w: 1 }}
+              label="min"
+              className="freq mto"
             />
             <button className="save">Save</button>
           </div>
