@@ -45,10 +45,35 @@ const Table = () => {
   const [sperson,setSperson]=useState([]);
   const [personAvg,setPersonAvg]=useState([]);
 
+  const [speed,setSpeed]=useState([])
+  const [secSpeed,setSecSpeed]=useState([])
+
+
   const [rows,setRows]=useState([{
   valueinTorque:  " ME Torque (Avg)",
    valueinSpeed: "ME Speed (Avg)"
   }])
+
+  const handleSpeed = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSpeed(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
+  const handleSecSpeed = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSecSpeed(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
+
 
 
   const handleChange = (event) => {
@@ -70,6 +95,8 @@ const Table = () => {
       typeof value === "string" ? value.split(",") : value
     );
   };
+
+
 
 
 
@@ -114,7 +141,7 @@ const Table = () => {
         </div>
         <hr />
         <div className="acc">
-          <div className="rows">
+          <div className="rows one">
             <button className="soto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +196,8 @@ const Table = () => {
               <Select
                 labelId="demo-simple-select-autowidth-label"
                 id="demo-simple-select-autowidth"
-                onChange={handleChange}
+                onChange={handleSecSpeed}
+                value={secSpeed}
                 autoWidth
                 label="ME Speed Avg"
               >
@@ -189,7 +217,7 @@ const Table = () => {
 
             <button className="save">Save</button>
           </div>
-          <div className="rows">
+          <div className="rows two">
             <button className="soto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -243,9 +271,10 @@ const Table = () => {
               <Select
                 labelId="demo-simple-select-autowidth-label"
                 id="demo-simple-select-autowidth"
-                onChange={handleChange}
+                onChange={handleSpeed}
                 autoWidth
                 label="ME Speed Avg"
+                value={speed}
               >
                 <MenuItem value="">
                   <em>None</em>
@@ -264,10 +293,10 @@ const Table = () => {
             
             <button className="save">Save</button>
           </div>
-          {/* multiples */}
+          
           {rows.map((val,i)=>{
             return (
-              <div className="rows">
+              <div className="rows three">
             <button className="soto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -318,7 +347,7 @@ const Table = () => {
 
             <FormControl sx={{ minWidth: 230 }} className="mto">
               <InputLabel id="demo-simple-select-autowidth-label">
-                Age
+                Select
               </InputLabel>
               <Select
                 labelId="demo-simple-select-autowidth-label"
@@ -346,7 +375,7 @@ const Table = () => {
           </div>
             )
           })}
-          <div className="rows">
+          {/* <div className="rows">
             <button className="soto">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -422,7 +451,7 @@ const Table = () => {
               className="freq mto"
             />
             <button className="save">Save</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
