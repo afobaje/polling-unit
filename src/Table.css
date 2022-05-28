@@ -16,40 +16,28 @@
 .firstitem>h3{
     margin-left:35rem;
 }
-/* .body{
-    display:flex;
-    flex-direction: column;
-} */
+
 .header{
     display:flex;
     flex-direction: row;
     place-content: space-between;
     padding: 0 1rem;
     margin-top: 1rem;
-    /* place-content: space-evenly; */
+    
 }
 .header>h3{
     font-weight: 500;
 }
-/* .header>ul{
-    display:flex;
-    flex-direction: row;
-    place-content: space-evenly;
-    list-style: none;
-} */
+
 .rows{
     display:flex;
     flex-direction: row;
     padding:0 1rem;
     place-content: space-between;
-    /* place-content: space-evenly; */
-    /* column-gap:5rem;
-    row-gap:5rem; */
+    
     margin-top: .5rem;
 }
-/* .rows>*{
-    margin-top:1rem;
-} */
+
 .freq{
     width: 4.5rem;
     
@@ -94,4 +82,32 @@
 }
 .eod{
     width: 5rem;
+}
+
+.alert{
+    border: 1px solid hsl(0,0%,80%);
+    border-radius: 4px;
+    height:1.6;
+    padding:0.5em;
+    width:14rem;
+    outline: none;
+}
+.space{
+    margin-left:-5rem;
+    
+}
+.dynamic{
+    min-width:22rem;
+}
+.min{
+    border: 1px solid hsl(0,0%,80%);
+    border-radius: 4px;
+    height:1.6rem;
+    padding:0.3rem;
+    text-align: center;
+    width:4rem;
+    outline: none;
+}
+.inbuddy{
+    border:1px solid hsl(0,0%,80%);
 }
